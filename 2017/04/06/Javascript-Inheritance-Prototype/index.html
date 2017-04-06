@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javascript,javascript继承,javascript原型继承," />
 
 
 
@@ -87,15 +87,24 @@
 
 
 
-<meta name="description" content="音乐、美食、旅行、Coding、她，缺一不可。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Manster">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="这几天又拜读了一遍 Stoyan Stefanov 的 《JavaScript 面向对象编程》和Kyle Simpson 的《你不知道的 JavaScript》系列书籍，对于 JavaScript 的继承机制又有了新的理解，再此做一下记录，方便以后查阅。
+原型链原型链是 JavaScript 中默认的继承方式，它通过原型来实现继承关系链。
+JavaScript 中的每个函数都有一个 prototy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript继承(一) -- 原型继承">
+<meta property="og:url" content="http://yoursite.com/2017/04/06/Javascript-Inheritance-Prototype/index.html">
 <meta property="og:site_name" content="Manster">
-<meta property="og:description" content="音乐、美食、旅行、Coding、她，缺一不可。">
+<meta property="og:description" content="这几天又拜读了一遍 Stoyan Stefanov 的 《JavaScript 面向对象编程》和Kyle Simpson 的《你不知道的 JavaScript》系列书籍，对于 JavaScript 的继承机制又有了新的理解，再此做一下记录，方便以后查阅。
+原型链原型链是 JavaScript 中默认的继承方式，它通过原型来实现继承关系链。
+JavaScript 中的每个函数都有一个 prototy">
+<meta property="og:image" content="http://yoursite.com/2017/04/06/Javascript-Inheritance-Prototype/1-Prototype.png">
+<meta property="og:updated_time" content="2017-04-06T15:24:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Manster">
-<meta name="twitter:description" content="音乐、美食、旅行、Coding、她，缺一不可。">
+<meta name="twitter:title" content="Javascript继承(一) -- 原型继承">
+<meta name="twitter:description" content="这几天又拜读了一遍 Stoyan Stefanov 的 《JavaScript 面向对象编程》和Kyle Simpson 的《你不知道的 JavaScript》系列书籍，对于 JavaScript 的继承机制又有了新的理解，再此做一下记录，方便以后查阅。
+原型链原型链是 JavaScript 中默认的继承方式，它通过原型来实现继承关系链。
+JavaScript 中的每个函数都有一个 prototy">
+<meta name="twitter:image" content="http://yoursite.com/2017/04/06/Javascript-Inheritance-Prototype/1-Prototype.png">
 
 
 
@@ -123,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/06/Javascript-Inheritance-Prototype/"/>
 
 
 
 
 
-  <title> Manster </title>
+  <title> Javascript继承(一) -- 原型继承 | Manster </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,9 +163,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,9 +246,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -271,10 +278,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/04/06/Javascript-Inheritance-Prototype/" itemprop="url">
-                  Javascript继承(一) -- 原型继承
-                </a>
+                Javascript继承(一) -- 原型继承
               
             
           </h1>
@@ -336,54 +340,92 @@
       
 
       
-        
-          <p>这几天又拜读了一遍 Stoyan Stefanov 的 《JavaScript 面向对象编程》和Kyle Simpson 的《你不知道的 JavaScript》系列书籍，对于 JavaScript 的继承机制又有了新的理解，再此做一下记录，方便以后查阅。</p>
+        <p>这几天又拜读了一遍 Stoyan Stefanov 的 《JavaScript 面向对象编程》和Kyle Simpson 的《你不知道的 JavaScript》系列书籍，对于 JavaScript 的继承机制又有了新的理解，再此做一下记录，方便以后查阅。</p>
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>原型链是 JavaScript 中默认的继承方式，它通过原型来实现继承关系链。</p>
 <p>JavaScript 中的每个函数都有一个 prototype 的对象属性，在函数被 <code>new</code> 操作符实例化后，被实例化的对象会产生一个指向该原型对象的链接（在大多数诉宿主环境中，该链接名为 <code>__proto__</code>）。通过该链接，我们就可以调用相关原型对象中的属性和方法了。</p>
 <p>因为原型对象本质上是对象，所以它含有对象固有的属性（即<code>__proto__</code>），指向其原型的链接。换句话说就是原型对象所指向的原型对象，而所指向的原型对象可能又会指向其他的原型对象，因此就形成了一条链，我们将其称之为原型链。</p>
 <img src="/2017/04/06/Javascript-Inheritance-Prototype/1-Prototype.png" alt="1-Prototype.png" title="">
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/06/Javascript-Inheritance-Prototype/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<a id="more"></a>
+<p>如上图所示，对象 rose 的属性中，有一个叫<code>__proto__</code>的属性，它指向了另外一个对象 flower ，而 flower 的<code>__proto__</code>属性又指向了对象 plant。那么这条原型链的尽头是哪里呢？答案是 <code>Object</code>。它是一切原型链的尽头，这里有一个地方需要注意的是，通过如下语句所创建的对象，是不会产生<code>__proto__</code> 属性的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.create(<span class="literal">null</span>);</div></pre></td></tr></table></figure>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>下面通过代码的实例来演示如何通过原型链实现继承，我们依旧使用之前图片中的例子。</p>
+<p>首先我们分别创建 Plant、Flower、Rose 函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Plant</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = <span class="string">'plant'</span>;</div><div class="line">   <span class="keyword">this</span>.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Flower</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = <span class="string">'flower'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rose</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = <span class="string">'rose'</span>;</div><div class="line">   <span class="keyword">this</span>.color = color;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后实例化一个 Plant 对象，并让 Flower 的 <code>prototype</code> 指向这个对象；对于 Rose 也同样如此，实例化一个 Flower 对象，并将 Rose 的 <code>prototype</code> 指向它。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Flower.prototype = <span class="keyword">new</span> Plant();</div><div class="line">Rose.prototype = <span class="keyword">new</span> Flower();</div></pre></td></tr></table></figure>
+<p>我们对 Flower 和 Rose 的<code>prototype</code>进行了覆盖（或者说是让<code>prototype</code>指向了新的对象），他们分别由 Plant 和 Flower 创建。但是当我们对<code>prototype</code>属性进行完全重写之后（即将一个全新的对象赋值给<code>prototype</code>属性时），会对该对象的<code>constructor</code>属性造成一定的影响。所以在我们完成相应的继承关系设定之后，对这些对象的<code>constructor</code>属性进行相应的重置是一个非常好的习惯。</p>
+<p>如果你使用的是 ES5 之前的版本，那么你可以这么做：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Flower.prototype.constructor = Flower;</div><div class="line">Rose.prototype.constructor = Rose;</div></pre></td></tr></table></figure>
+<p>将对象的<code>constructor</code>属性重新指向其本身，但<code>constructor</code>属性默认是不可枚举的（也就是说在 for in 循环中不会遍历到该属性），通过这种方式重新定向<code>constructor</code>会破坏其不可枚举性，这也算是原型链继承的一个小小的瑕疵。</p>
+<p>如果你使用的是 ES5 或更新的版本，那么你可以通过<code>Object.defineProperty()</code>来重新定向，并且不会破坏其不可枚举性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 重新定向 Flower 的 constructor 属性</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(Flower.prototype, <span class="string">'constructor'</span>, &#123;</div><div class="line">    <span class="attr">value</span>: Flower,</div><div class="line">    <span class="attr">writable</span>: <span class="literal">true</span>, <span class="comment">// 可写入</span></div><div class="line">    configurable: <span class="literal">true</span>, <span class="comment">// 可配置</span></div><div class="line">    enumerable: <span class="literal">false</span> <span class="comment">// 不可枚举</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 重新定向 Rose 的 constructor 属性</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(Rose.prototype, <span class="string">'constructor'</span>, &#123;</div><div class="line">    <span class="attr">value</span>: Rose,</div><div class="line">    <span class="attr">writable</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">configurable</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">enumerable</span>: <span class="literal">false</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>也许你读到这里还是会有些疑惑<code>prototype</code>和<code>__proto__</code>的关系，通过下面的代码你应该就可以非常清楚的了解了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> redRose = <span class="keyword">new</span> Rose(<span class="string">'red'</span>);</div><div class="line">redRose.__proto__ === Rose.prototype; <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>redRose 的<code>__proto__</code>和 Rose 的 <code>prototype</code>完全相等，也就是说它们指向的是同一个对象，即 Flower 的实例。</p>
+<h2 id="属性屏蔽"><a href="#属性屏蔽" class="headerlink" title="属性屏蔽"></a>属性屏蔽</h2><p>如果方法自身的属性与原型链上的属性发生冲突时，会发生什么样的情况？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Rose.prototype.name = <span class="string">'ROSE'</span>;</div><div class="line"><span class="keyword">var</span> redRose = <span class="keyword">new</span> Rose(<span class="string">'red'</span>);</div><div class="line">redRose.name; <span class="comment">// rose</span></div><div class="line">redRose.__proto__.name; <span class="comment">// ROSE</span></div></pre></td></tr></table></figure>
+<p>答案是若发生重名的情况，对象自身属性的优先级要高于原型链上的同名的属性。有两点需要注意的是：</p>
+<ol>
+<li><p>如果在<code>prototype</code>链上层存在名同名属性并且是可写的(writable: true)，那就会直接在该对象中添加一个同名的新属性，它是<strong>屏蔽属性</strong>。</p>
+</li>
+<li><p>如果在<code>prototype</code>链上层存在名同名属性，但是它被标记为只读(writable:false)，那么 无法修改已有属性或者在该对象上创建屏蔽属性。如果运行在严格模式下，代码会抛出一个错误。否则，这条赋值语句会被<strong>忽略</strong>。总之<strong>不会发生屏蔽</strong>。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/javascript继承/" rel="tag"># javascript继承</a>
+          
+            <a href="/tags/javascript原型继承/" rel="tag"># javascript原型继承</a>
+          
+        </div>
+      
+
+      
+        
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -391,6 +433,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -410,8 +456,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/user_portrait.jpeg"
@@ -475,6 +530,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">1.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性屏蔽"><span class="nav-number">3.</span> <span class="nav-text">属性屏蔽</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -589,6 +660,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
