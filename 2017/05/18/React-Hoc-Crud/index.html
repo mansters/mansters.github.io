@@ -92,7 +92,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单">
 <meta property="og:url" content="http://yoursite.com/2017/05/18/React-Hoc-Crud/index.html">
-<meta property="og:site_name" content="Manster">
+<meta property="og:site_name" content="Manny & Jossy">
 <meta property="og:description" content="摘要这几天公司的一个内管系统正在使用 React 进行重构，组件库使用了 Ant Design， 不仅仅因为其样式比较美观，很大一部分原因是因为它提供了一整套周边库，包括 AntV 图表库，还有 dva 这种轻量级的框架。
 在开发的过程中发现大部分界面逻辑基本相同，唯一改变的就是每个页面的表单，表格，和搜索的条件，而组件本身是不变的，每次重复的编写导致了很多冗余的代码，在犯懒症的驱使下，对重复性的">
 <meta property="og:updated_time" content="2017-05-21T04:56:18.000Z">
@@ -133,7 +133,7 @@
 
 
 
-  <title> 基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单 | Manster </title>
+  <title> 基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单 | Manny & Jossy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -169,7 +169,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Manster</span>
+        <span class="site-title">Manny & Jossy</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -261,7 +261,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Manster">
+      <meta itemprop="name" content="Manny & Jossy">
     </span>
 
     
@@ -301,6 +301,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/05/18/React-Hoc-Crud/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -517,6 +527,8 @@
 
           
   <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
     
   </div>
 
@@ -770,18 +782,21 @@
 
 
   
-
-
-
-
-
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "cba688a76e8e49fbb229abb94ca86735",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
   
 
 
 
 
-
-  
 
 
 
