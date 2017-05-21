@@ -1,0 +1,913 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,React,HOC,Ant Design," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="摘要这几天公司的一个内管系统正在使用 React 进行重构，组件库使用了 Ant Design， 不仅仅因为其样式比较美观，很大一部分原因是因为它提供了一整套周边库，包括 AntV 图表库，还有 dva 这种轻量级的框架。
+在开发的过程中发现大部分界面逻辑基本相同，唯一改变的就是每个页面的表单，表格，和搜索的条件，而组件本身是不变的，每次重复的编写导致了很多冗余的代码，在犯懒症的驱使下，对重复性的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单">
+<meta property="og:url" content="http://yoursite.com/2017/05/18/React-Hoc-Crud/index.html">
+<meta property="og:site_name" content="Manster">
+<meta property="og:description" content="摘要这几天公司的一个内管系统正在使用 React 进行重构，组件库使用了 Ant Design， 不仅仅因为其样式比较美观，很大一部分原因是因为它提供了一整套周边库，包括 AntV 图表库，还有 dva 这种轻量级的框架。
+在开发的过程中发现大部分界面逻辑基本相同，唯一改变的就是每个页面的表单，表格，和搜索的条件，而组件本身是不变的，每次重复的编写导致了很多冗余的代码，在犯懒症的驱使下，对重复性的">
+<meta property="og:updated_time" content="2017-05-21T04:56:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单">
+<meta name="twitter:description" content="摘要这几天公司的一个内管系统正在使用 React 进行重构，组件库使用了 Ant Design， 不仅仅因为其样式比较美观，很大一部分原因是因为它提供了一整套周边库，包括 AntV 图表库，还有 dva 这种轻量级的框架。
+在开发的过程中发现大部分界面逻辑基本相同，唯一改变的就是每个页面的表单，表格，和搜索的条件，而组件本身是不变的，每次重复的编写导致了很多冗余的代码，在犯懒症的驱使下，对重复性的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/18/React-Hoc-Crud/"/>
+
+
+
+
+
+  <title> 基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单 | Manster </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Manster</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">The people who are crazy enough to think that they can change the world, are the ones who do.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/React-Hoc-Crud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Manny Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user_portrait.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Manster">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T21:12:35+08:00">
+                2017-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/05/18/React-Hoc-Crud/" class="leancloud_visitors" data-flag-title="基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,042
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这几天公司的一个内管系统正在使用 React 进行重构，组件库使用了 <a href="https://ant.design/index-cn" target="_blank" rel="external">Ant Design</a>， 不仅仅因为其样式比较美观，很大一部分原因是因为它提供了一整套周边库，包括 <a href="https://antv.alipay.com/index.html" target="_blank" rel="external">AntV</a> 图表库，还有 <a href="https://github.com/dvajs/dva" target="_blank" rel="external">dva</a> 这种轻量级的框架。</p>
+<p>在开发的过程中发现大部分界面逻辑基本相同，唯一改变的就是每个页面的表单，表格，和搜索的条件，而组件本身是不变的，每次重复的编写导致了很多冗余的代码，在犯懒症的驱使下，对重复性的代码进行了封装。</p>
+<p>这篇文章主要是展示一个高阶组件的实例，并使用 Ant Design 作为组件库。假设你对高阶组件或组件库还没有了解过，建议先阅读以下文章和文档：<br><a href="https://zhuanlan.zhihu.com/p/24776678?group_id=802649040843051008" target="_blank" rel="external">深入理解 React 高阶组件</a><br><a href="https://ant.design/docs/react/introduce-cn" target="_blank" rel="external">Ant Design 中文文档</a></p>
+<p>好了，让我们开始吧！</p>
+ <a id="more"></a>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>大致的界面效果如上图所示，整个页面可以拆分为5个组件: 搜索表单，数据表单，表格，翻页，模态框。 然而在实际的开发过程中发现，模态框每次都是重复性的编码，表格和翻页在组件库中已提供，只是每次传入的配置参数不同，我们最主要的逻辑是表单。所以今天，我们就先将模态框和表单封装为一个高阶组件。</p>
+<p>在开始动手之前，我们先来思考一下，我们需要一种怎么样的模态框表单，模态框表单都需要哪些参数？这个问题我们可以拆分为以下三个小问题：</p>
+<p>Q: 在模态框表单中都有哪些冗余的重复性代码是和业务无关的？<br>A: 所有关于模态框显示、隐藏的操作都是重复性的。每次只专注于表单自身的业务逻辑，而不再去考虑其他的显示操作。</p>
+<p>Q: 模态框需要哪些参数？<br>A: 对于模态框来讲，需要有标题和模态框自身显示或隐藏的状态，所以我们确定了两个参数<code>title</code>和<code>visible</code>。还需要一个触发模态框显示的元素。</p>
+<p>Q: 表单又需要哪些参数？<br>A: 对于表单来讲，需要有表单的记录和提交时的方法，所以我们又确定了两个参数<code>record</code>和<code>onSubmit</code>。</p>
+<p>至此，我们已经确定了5个参数，再加上应传入的表单组件，共6个参数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">title</td>
+<td style="text-align:center">模态框标题</td>
+</tr>
+<tr>
+<td style="text-align:center">visible</td>
+<td style="text-align:center">模态框显示、隐藏状态</td>
+</tr>
+<tr>
+<td style="text-align:center">element</td>
+<td style="text-align:center">触发模态框显示的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">record</td>
+<td style="text-align:center">表单记录</td>
+</tr>
+<tr>
+<td style="text-align:center">onSubmit</td>
+<td style="text-align:center">提交表单的方法</td>
+</tr>
+<tr>
+<td style="text-align:center">FormComponent</td>
+<td style="text-align:center">表单组件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="封装基本逻辑"><a href="#封装基本逻辑" class="headerlink" title="封装基本逻辑"></a>封装基本逻辑</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; Modal, Form, Button &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CRUDForm</span>(<span class="params">FormComponent</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">&#123; title, visible, element, record, onSubmit &#125;</span>) =&gt;</span> &#123;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ModalForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">      <span class="keyword">constructor</span>() &#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">        <span class="comment">// 将模态框的显示、隐藏状态设置为 state</span></div><div class="line">        <span class="keyword">this</span>.state = &#123;</div><div class="line">          visible,</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="comment">// 显示模态框</span></div><div class="line">      showModalHandler = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">this</span>.setState(&#123;</div><div class="line">          <span class="attr">visible</span>: <span class="literal">true</span>,</div><div class="line">        &#125;);</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">      <span class="comment">// 隐藏模态框</span></div><div class="line">      hideModalHandler = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">this</span>.setState(&#123;</div><div class="line">          <span class="attr">visible</span>: <span class="literal">false</span>,</div><div class="line">        &#125;);</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">      <span class="comment">// 提交表单</span></div><div class="line">      okHandler = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">this</span>.props.form.validateFields(<span class="function">(<span class="params">err, values</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">if</span> (!err) &#123;</div><div class="line">            onSubmit(filter(values));</div><div class="line">            <span class="keyword">this</span>.hideModalHandler();</div><div class="line">          &#125;</div><div class="line">        &#125;);</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">      render() &#123;</div><div class="line">        <span class="keyword">const</span> &#123; form &#125; = <span class="keyword">this</span>.props;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">          &lt;span&gt;</div><div class="line">            &lt;span onClick=&#123;this.showModalHandler&#125;&gt;&#123;element&#125;&lt;/span&gt;</div><div class="line">            &lt;Modal</div><div class="line">              title=&#123;title&#125;</div><div class="line">              visible=&#123;this.state.visible&#125;</div><div class="line">              onOk=&#123;this.okHandler&#125;</div><div class="line">              onCancel=&#123;this.hideModalHandler&#125;</div><div class="line">            /&gt;</div><div class="line">              &lt;FormComponent record=&#123;record&#125; form=&#123;form&#125; /&gt;</div><div class="line">            &lt;/Modal&gt;</div><div class="line">          &lt;/span&gt;</div><div class="line">        );</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return Form.create(&#123;&#125;)(ModalForm);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default CRUDForm;</div></pre></td></tr></table></figure>
+<p>到现在为止，我们已经将最基本的模态框表单逻辑封装完毕。当点击传入的元素时，会触发模态框的显示，显示的内容为传入的表单组件。也许你会有一些疑惑，为什么首先传入的是表单组件而不是其他参数？<code>Form.create</code>方法的作用是什么？<code>props</code> 中的 <code>form</code> 是什么？别急，下面我们来一一解答。</p>
+<p>Q: <code>Form.create</code>方法的作用是什么？<br>A: 组件库提供的方法，使用 Form.create 处理后的表单具有自动收集数据并校验的功能。</p>
+<p>Q: <code>props</code> 中的 <code>form</code> 是什么?<br>A: 经 <code>Form.create()</code> 包装过的组件会自带 <code>this.props.form</code> 属性，用于对表单的获取、设置值，校验组件等操作，具体请参见<a href="https://ant.design/components/form-cn/#Form.create(options)" target="_blank" rel="external">Form.create(options)</a>。</p>
+<p>Q: 为什么首先传入的是表单组件而不是其他参数？<br>A: 我觉得这是一个很好的问题，实现同样一种功能有N种方式和方法，为什么我们选择这种方式实现？就个人的理解而言：将通用的参数放在最前。在大多数的 CRUD 应用场景当中，对同一功能的添加和修改是可以复用同一表单组件的，但他们调用的方法也许会有所不同。所以将通用的表单组件放在最前，其他几个参数根据调用时的需要传入不同的值。</p>
+<h3 id="强制组件重新渲染"><a href="#强制组件重新渲染" class="headerlink" title="强制组件重新渲染"></a>强制组件重新渲染</h3><p>我们在上一小节中已经封装了模态框表单的基本逻辑，但是在实际的使用当中会发现一点小问题，当我们修改了表单的值后关闭对话框（点击取消或右上角的关闭按钮）后，再次打开表单会发现表单并未被清空或回复初始的值，而是上次修改过的记录，这是通常不是我们期望的结果。根据官方文档给出的说明， <code>Modal</code>组件有标准的 React 组件生命周期，关闭后状态不会自动清空，如果希望每次打开都是新内容，需要自行手动清空旧的状态。或者给 Modal 设置一个全新的 key，React 会渲染出一个全新的对话框（具体请参见 <a href="https://ant.design/components/modal-cn/#清空旧数据" target="_blank" rel="external">清空旧数据</a>）。下面，我们就根据官方文档的建议修改之前的代码，使其每次打开都是全新的内容。</p>
+<p>现在，假设我们有一个 uuid 方法，用来每次产生一个唯一键。</p>
+<p>将 constructor 中声明 state 时添加一个 key 属性，并给定初始值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constructor</span>() &#123;</div><div class="line">  <span class="keyword">super</span>();</div><div class="line">  <span class="keyword">this</span>.state = &#123;</div><div class="line">    visible,</div><div class="line">    <span class="attr">key</span>: uuid(),</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改 hideModalHandler 方法，使模态框关闭时会将 key 重新赋值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hideModalHandler = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">this</span>.setState(&#123;</div><div class="line">    <span class="attr">visible</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">key</span>    : uuid(),</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>给 <code>Modal</code> 组件添加 <code>key</code> 属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;Modal</div><div class="line">  title=&#123;title&#125;</div><div class="line">  key=&#123;<span class="keyword">this</span>.state.key&#125;</div><div class="line">  visible=&#123;<span class="keyword">this</span>.state.visible&#125;</div><div class="line">  onOk=&#123;<span class="keyword">this</span>.okHandler&#125;</div><div class="line">  onCancel=&#123;<span class="keyword">this</span>.hideModalHandler&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
+<h3 id="完善模态框表单组件"><a href="#完善模态框表单组件" class="headerlink" title="完善模态框表单组件"></a>完善模态框表单组件</h3><p>到目前为止，我们所做的已经满足了基本的需求。让我们再来想一想，在日常的开发当中，还有什么经常遇到的情况？</p>
+<p>大致总结一下，可能有2个经常需要的状况：</p>
+<ol>
+<li>filter: 对表单的数据进行格式化</li>
+<li>externalData: 表单额外需要的数据，例如下拉列表所需要的 list 等。</li>
+</ol>
+<p>首先我们来添加 <code>filter</code>，<code>filter</code> 应该为一个可选的参数，默认为返回原值。修改 <code>okHandler</code> 方法，在调用 <code>onSubmit</code> 之前调用 <code>filter</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CRUDForm</span>(<span class="params">FormComponent</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">&#123; title, visible, element, record, onSubmit, filter = val =&gt; val &#125;</span>) =&gt;</span> &#123;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ModalForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">      ...</div><div class="line">      okHandler = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">const</span> &#123; form &#125; = <span class="keyword">this</span>.props;</div><div class="line">        form.validateFields(<span class="function">(<span class="params">err, values</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">if</span> (!err) &#123;</div><div class="line">            onSubmit(filter(values));</div><div class="line">            <span class="keyword">this</span>.hideModalHandler();</div><div class="line">          &#125;</div><div class="line">        &#125;);</div><div class="line">      &#125;;</div><div class="line">      ...</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着我们来添加 <code>externalData</code>，也许有人会有些疑问：</p>
+<p>Q: 我们在表单组件内部请求数据不可以吗，为什么要多此一举添加一个参数？<br>A: 如果从代码只是可以运行的角度来说，是完全可以的。但个人认为，表单的职责就是验证并提交数据或信息，它只关心用户输入了什么，输入的信息是否正确，并把正确的信息提交到服务端。所以一切外来的数据都通过 props 传递到表单。</p>
+<p>现在我们来修改 <code>render</code> 函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CRUDForm</span>(<span class="params">FormComponent</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">&#123; title, visible, element, record, onSubmit, filter = val =&gt; val, externalData &#125;</span>) =&gt;</span> &#123;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ModalForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">      ...</div><div class="line">      render() &#123;</div><div class="line">        <span class="keyword">const</span> &#123; form &#125; = <span class="keyword">this</span>.props;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">          &lt;span&gt;</div><div class="line">            &lt;span onClick=&#123;this.showModalHandler&#125;&gt;&#123;children&#125;&lt;/span&gt;</div><div class="line">            &lt;Modal</div><div class="line">              title=&#123;title&#125;</div><div class="line">              key=&#123;this.state.key&#125;</div><div class="line">              visible=&#123;this.state.visible&#125;</div><div class="line">              onOk=&#123;this.okHandler&#125;</div><div class="line">              onCancel=&#123;this.hideModalHandler&#125;</div><div class="line">            /&gt;</div><div class="line">              &lt;FormComponent record=&#123;record&#125; form=&#123;form&#125; externalData=&#123;externalData&#125; /&gt;</div><div class="line">            &lt;/Modal&gt;</div><div class="line">          &lt;/span&gt;</div><div class="line">        );</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>至此，我们的模态框表单就已经完成啦，你可以根据自己的实际需求对它进行扩展。比如公司内管系统的表单布局都是一致的，所以我将表单的布局样式也从 props 传递了下去，避免每次重复引入布局样式。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/HOC/" rel="tag"># HOC</a>
+          
+            <a href="/tags/Ant-Design/" rel="tag"># Ant Design</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/Javascript-Inheritance-Prototype/" rel="next" title="Javascript继承(一) -- 原型继承">
+                <i class="fa fa-chevron-left"></i> Javascript继承(一) -- 原型继承
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user_portrait.jpeg"
+               alt="Manny Meng" />
+          <p class="site-author-name" itemprop="name">Manny Meng</p>
+           
+              <p class="site-description motion-element" itemprop="description">音乐、美食、旅行、Coding、她，缺一不可。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mansters" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">3.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装基本逻辑"><span class="nav-number">3.1.</span> <span class="nav-text">封装基本逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制组件重新渲染"><span class="nav-number">3.2.</span> <span class="nav-text">强制组件重新渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完善模态框表单组件"><span class="nav-number">3.3.</span> <span class="nav-text">完善模态框表单组件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Manny Meng</span>
+</div>
+
+
+<div class="powered-by">
+  Power By <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("8UEhOS125sf6M01eQGLECFWt-gzGzoHsz", "bqPiszKidWA4pckin2BSMUUw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
