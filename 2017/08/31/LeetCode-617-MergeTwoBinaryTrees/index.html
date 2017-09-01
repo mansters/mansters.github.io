@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript,javascript继承,javascript原型继承," />
+  <meta name="keywords" content="Leet Code,Algorithms,算法," />
 
 
 
@@ -87,24 +87,22 @@
 
 
 
-<meta name="description" content="这几天又拜读了一遍 Stoyan Stefanov 的 《JavaScript 面向对象编程》和Kyle Simpson 的《你不知道的 JavaScript》系列书籍，对于 JavaScript 的继承机制又有了新的理解，再此做一下记录，方便以后查阅。
-原型链原型链是 JavaScript 中默认的继承方式，它通过原型来实现继承关系链。
-JavaScript 中的每个函数都有一个 prototy">
+<meta name="description" content="题目描述
+Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.
+You need to merge them into a new binary">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Javascript继承(一) -- 原型继承">
-<meta property="og:url" content="http://yoursite.com/2017/04/06/Javascript-Inheritance-Prototype/index.html">
+<meta property="og:title" content="「LeetCode」617 - Merge Two Binary Trees">
+<meta property="og:url" content="http://yoursite.com/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/index.html">
 <meta property="og:site_name" content="Manny & Jossy">
-<meta property="og:description" content="这几天又拜读了一遍 Stoyan Stefanov 的 《JavaScript 面向对象编程》和Kyle Simpson 的《你不知道的 JavaScript》系列书籍，对于 JavaScript 的继承机制又有了新的理解，再此做一下记录，方便以后查阅。
-原型链原型链是 JavaScript 中默认的继承方式，它通过原型来实现继承关系链。
-JavaScript 中的每个函数都有一个 prototy">
-<meta property="og:image" content="http://yoursite.com/2017/04/06/Javascript-Inheritance-Prototype/1-Prototype.png">
-<meta property="og:updated_time" content="2017-04-06T15:39:26.000Z">
+<meta property="og:description" content="题目描述
+Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.
+You need to merge them into a new binary">
+<meta property="og:updated_time" content="2017-09-01T08:11:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Javascript继承(一) -- 原型继承">
-<meta name="twitter:description" content="这几天又拜读了一遍 Stoyan Stefanov 的 《JavaScript 面向对象编程》和Kyle Simpson 的《你不知道的 JavaScript》系列书籍，对于 JavaScript 的继承机制又有了新的理解，再此做一下记录，方便以后查阅。
-原型链原型链是 JavaScript 中默认的继承方式，它通过原型来实现继承关系链。
-JavaScript 中的每个函数都有一个 prototy">
-<meta name="twitter:image" content="http://yoursite.com/2017/04/06/Javascript-Inheritance-Prototype/1-Prototype.png">
+<meta name="twitter:title" content="「LeetCode」617 - Merge Two Binary Trees">
+<meta name="twitter:description" content="题目描述
+Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.
+You need to merge them into a new binary">
 
 
 
@@ -132,13 +130,13 @@ JavaScript 中的每个函数都有一个 prototy">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/06/Javascript-Inheritance-Prototype/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/"/>
 
 
 
 
 
-  <title> Javascript继承(一) -- 原型继承 | Manny & Jossy </title>
+  <title> 「LeetCode」617 - Merge Two Binary Trees | Manny & Jossy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +265,7 @@ JavaScript 中的每个函数都有一个 prototy">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/Javascript-Inheritance-Prototype/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Manny Meng">
@@ -288,7 +286,7 @@ JavaScript 中的每个函数都有一个 prototy">
             
             
               
-                Javascript继承(一) -- 原型继承
+                「LeetCode」617 - Merge Two Binary Trees
               
             
           </h1>
@@ -303,8 +301,8 @@ JavaScript 中的每个函数都有一个 prototy">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T22:49:53+08:00">
-                2017-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T21:07:16+08:00">
+                2017-08-31
               </time>
             
 
@@ -314,6 +312,28 @@ JavaScript 中的每个函数都有一个 prototy">
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -322,7 +342,7 @@ JavaScript 中的每个函数都有一个 prototy">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/04/06/Javascript-Inheritance-Prototype/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -331,7 +351,7 @@ JavaScript 中的每个函数都有一个 prototy">
 
           
           
-             <span id="/2017/04/06/Javascript-Inheritance-Prototype/" class="leancloud_visitors" data-flag-title="Javascript继承(一) -- 原型继承">
+             <span id="/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/" class="leancloud_visitors" data-flag-title="「LeetCode」617 - Merge Two Binary Trees">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -355,7 +375,7 @@ JavaScript 中的每个函数都有一个 prototy">
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,165
+                  650
                 </span>
               
 
@@ -371,7 +391,7 @@ JavaScript 中的每个函数都有一个 prototy">
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  3
                 </span>
               
             </div>
@@ -390,37 +410,31 @@ JavaScript 中的每个函数都有一个 prototy">
       
 
       
-        <p>这几天又拜读了一遍 Stoyan Stefanov 的 《JavaScript 面向对象编程》和Kyle Simpson 的《你不知道的 JavaScript》系列书籍，对于 JavaScript 的继承机制又有了新的理解，再此做一下记录，方便以后查阅。</p>
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>原型链是 JavaScript 中默认的继承方式，它通过原型来实现继承关系链。</p>
-<p>JavaScript 中的每个函数都有一个 prototype 的对象属性，在函数被 <code>new</code> 操作符实例化后，被实例化的对象会产生一个指向该原型对象的链接（在大多数诉宿主环境中，该链接名为 <code>__proto__</code>）。通过该链接，我们就可以调用相关原型对象中的属性和方法了。</p>
-<p>因为原型对象本质上是对象，所以它含有对象固有的属性（即<code>__proto__</code>），指向其原型的链接。换句话说就是原型对象所指向的原型对象，而所指向的原型对象可能又会指向其他的原型对象，因此就形成了一条链，我们将其称之为原型链。</p>
-<img src="/2017/04/06/Javascript-Inheritance-Prototype/1-Prototype.png" alt="1-Prototype.png" title="">
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote>
+<p>Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.</p>
+<p>You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of new tree.</p>
+</blockquote>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">	Tree 1                   Tree 2</div><div class="line">          1                         2</div><div class="line">         / \                       / \</div><div class="line">        3   2                     1   3</div><div class="line">       /                           \   \</div><div class="line">      5                             4   7</div><div class="line">Output:</div><div class="line">Merged tree:</div><div class="line">	     3</div><div class="line">	    / \</div><div class="line">	   4   5</div><div class="line">	  / \   \</div><div class="line">	 5   4   7</div></pre></td></tr></table></figure>
+<p>Note: The merging process must start from the root nodes of both trees.</p>
+<p>题目大意为给定两个由数字组成的二叉树, 将他们重叠起来的时候有些节点会重合。你需要将他们合并为一个新的二叉树, 合并规则为: 若两个节点发生重合, 则将重合节点相加后的结果作为新二叉树节点的值, 若未发生重合, 则将该节点的值复制到新二叉树对应的节点。</p>
+<p>提示: 必须从两个树的根节点开始合并。</p>
 <a id="more"></a>
-<p>如上图所示，对象 rose 的属性中，有一个叫<code>__proto__</code>的属性，它指向了另外一个对象 flower ，而 flower 的<code>__proto__</code>属性又指向了对象 plant。那么这条原型链的尽头是哪里呢？答案是 <code>Object</code>。它是一切原型链的尽头，这里有一个地方需要注意的是，通过如下语句所创建的对象，是不会产生<code>__proto__</code> 属性的。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.create(<span class="literal">null</span>);</div></pre></td></tr></table></figure>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>下面通过代码的实例来演示如何通过原型链实现继承，我们依旧使用之前图片中的例子。</p>
-<p>首先我们分别创建 Plant、Flower、Rose 函数：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Plant</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = <span class="string">'plant'</span>;</div><div class="line">   <span class="keyword">this</span>.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Flower</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = <span class="string">'flower'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rose</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = <span class="string">'rose'</span>;</div><div class="line">   <span class="keyword">this</span>.color = color;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后实例化一个 Plant 对象，并让 Flower 的 <code>prototype</code> 指向这个对象；对于 Rose 也同样如此，实例化一个 Flower 对象，并将 Rose 的 <code>prototype</code> 指向它。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Flower.prototype = <span class="keyword">new</span> Plant();</div><div class="line">Rose.prototype = <span class="keyword">new</span> Flower();</div></pre></td></tr></table></figure>
-<p>我们对 Flower 和 Rose 的<code>prototype</code>进行了覆盖（或者说是让<code>prototype</code>指向了新的对象），他们分别由 Plant 和 Flower 创建。但是当我们对<code>prototype</code>属性进行完全重写之后（即将一个全新的对象赋值给<code>prototype</code>属性时），会对该对象的<code>constructor</code>属性造成一定的影响。所以在我们完成相应的继承关系设定之后，对这些对象的<code>constructor</code>属性进行相应的重置是一个非常好的习惯。</p>
-<p>如果你使用的是 ES5 之前的版本，那么你可以这么做：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Flower.prototype.constructor = Flower;</div><div class="line">Rose.prototype.constructor = Rose;</div></pre></td></tr></table></figure>
-<p>将对象的<code>constructor</code>属性重新指向其本身，但<code>constructor</code>属性默认是不可枚举的（也就是说在 for in 循环中不会遍历到该属性），通过这种方式重新定向<code>constructor</code>会破坏其不可枚举性，这也算是原型链继承的一个小小的瑕疵。</p>
-<p>如果你使用的是 ES5 或更新的版本，那么你可以通过<code>Object.defineProperty()</code>来重新定向，并且不会破坏其不可枚举性：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 重新定向 Flower 的 constructor 属性</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(Flower.prototype, <span class="string">'constructor'</span>, &#123;</div><div class="line">    <span class="attr">value</span>: Flower,</div><div class="line">    <span class="attr">writable</span>: <span class="literal">true</span>, <span class="comment">// 可写入</span></div><div class="line">    configurable: <span class="literal">true</span>, <span class="comment">// 可配置</span></div><div class="line">    enumerable: <span class="literal">false</span> <span class="comment">// 不可枚举</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 重新定向 Rose 的 constructor 属性</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(Rose.prototype, <span class="string">'constructor'</span>, &#123;</div><div class="line">    <span class="attr">value</span>: Rose,</div><div class="line">    <span class="attr">writable</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">configurable</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">enumerable</span>: <span class="literal">false</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>也许你读到这里还是会有些疑惑<code>prototype</code>和<code>__proto__</code>的关系，通过下面的代码你应该就可以非常清楚的了解了：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> redRose = <span class="keyword">new</span> Rose(<span class="string">'red'</span>);</div><div class="line">redRose.__proto__ === Rose.prototype; <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>redRose 的<code>__proto__</code>和 Rose 的 <code>prototype</code>完全相等，也就是说它们指向的是同一个对象，即 Flower 的实例。</p>
-<h2 id="属性屏蔽"><a href="#属性屏蔽" class="headerlink" title="属性屏蔽"></a>属性屏蔽</h2><p>如果方法自身的属性与原型链上的属性发生冲突时，会发生什么样的情况？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Rose.prototype.name = <span class="string">'ROSE'</span>;</div><div class="line"><span class="keyword">var</span> redRose = <span class="keyword">new</span> Rose(<span class="string">'red'</span>);</div><div class="line">redRose.name; <span class="comment">// rose</span></div><div class="line">redRose.__proto__.name; <span class="comment">// ROSE</span></div></pre></td></tr></table></figure>
-<p>答案是若发生重名的情况，对象自身属性的优先级要高于原型链上的同名的属性。有两点需要注意的是：</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>强烈建议大家去看官方给出的说明文档和图例, 有合并的详细步骤和说明:</p>
+<p><a href="https://leetcode.com/articles/merge-two-binary-trees/" target="_blank" rel="external">https://leetcode.com/articles/merge-two-binary-trees/</a></p>
+<p>基本上说道树都会想到递归, 那么本题也不例外, 使用递归的方式合并两个树:</p>
 <ol>
-<li><p>如果在<code>prototype</code>链上层存在名同名属性并且是可写的(writable: true)，那就会直接在该对象中添加一个同名的新属性，它是<strong>屏蔽属性</strong>。</p>
+<li><p>题目中已经给出了树节点的构造函数 TreeNode, 共包含三个值: val 当前节点的值, left 左子树, right 右子树。</p>
 </li>
-<li><p>如果在<code>prototype</code>链上层存在名同名属性，但是它被标记为只读(writable:false)，那么 无法修改已有属性或者在该对象上创建屏蔽属性。如果运行在严格模式下，代码会抛出一个错误。否则，这条赋值语句会被<strong>忽略</strong>。总之<strong>不会发生屏蔽</strong>。</p>
+<li><p>在合并树的方法中已经给定了两个参数: t1 和 t2, 我们先来分析一下这两个参数分别代表什么。假设 A 和 B 为两个数相对应的节点, 那么在合并的时候应为 A 的左子树 和 B 的左子树合并, 或 A 的右子树和 B 的右子树合并。所以 t1 和 t2 两个参数应同为两棵树对应节点的左子树或右子树。</p>
+</li>
+<li><p>若 t1 和 t2 都为假值(undefined 或 null 等), 则说明其父节点不拥有左子树或右子树。</p>
+</li>
+<li><p>若 t1 和 t2 有其中一个为假值, 则将值为假值的节点数值视为 0。</p>
+</li>
+<li><p>继续递归计算该节点的左子树和右子树, 直到整个树全部遍历完成。</p>
 </li>
 </ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * function TreeNode(val) &#123;</div><div class="line"> *     this.val = val;</div><div class="line"> *     this.left = this.right = null;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> getTreeNodeValue = <span class="function"><span class="params">node</span> =&gt;</span> (node || <span class="number">0</span>).val || <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> getChildNode = <span class="function">(<span class="params">node, type</span>) =&gt;</span> node &amp;&amp; node[type];</div><div class="line"><span class="keyword">var</span> getLeftChildNode = <span class="function">(<span class="params">node</span>) =&gt;</span> getChildNode(node, <span class="string">'left'</span>);</div><div class="line"><span class="keyword">var</span> getRightChildNode = <span class="function">(<span class="params">node</span>) =&gt;</span> getChildNode(node, <span class="string">'right'</span>);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * @param &#123;TreeNode&#125; t1</div><div class="line"> * @param &#123;TreeNode&#125; t2</div><div class="line"> * @return &#123;TreeNode&#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> mergeTrees = <span class="function"><span class="keyword">function</span>(<span class="params">t1, t2</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!t1 &amp;&amp; !t2) <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> root = <span class="keyword">new</span> TreeNode(getTreeNodeValue(t1) + getTreeNodeValue(t2));</div><div class="line">    root.left = mergeTrees(getLeftChildNode(t1), getLeftChildNode(t2));</div><div class="line">    root.right = mergeTrees(getRightChildNode(t1), getRightChildNode(t2));</div><div class="line">    <span class="keyword">return</span> root;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -450,11 +464,11 @@ JavaScript 中的每个函数都有一个 prototy">
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/Leet-Code/" rel="tag"># Leet Code</a>
           
-            <a href="/tags/javascript继承/" rel="tag"># javascript继承</a>
+            <a href="/tags/Algorithms/" rel="tag"># Algorithms</a>
           
-            <a href="/tags/javascript原型继承/" rel="tag"># javascript原型继承</a>
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
         </div>
       
@@ -467,15 +481,15 @@ JavaScript 中的每个函数都有一个 prototy">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/30/LeetCode-657-JudgeRouteCircle/" rel="next" title="「LeetCode」657 - Judge Route Circle">
+                <i class="fa fa-chevron-left"></i> 「LeetCode」657 - Judge Route Circle
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/18/React-Hoc-Crud/" rel="prev" title="基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单">
-                基于 React + Ant Design 编写 CRUD 应用(一) -- 模态框表单 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +631,7 @@ JavaScript 中的每个函数都有一个 prototy">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">1.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性屏蔽"><span class="nav-number">3.</span> <span class="nav-text">属性屏蔽</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.1.</span> <span class="nav-text">Example:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li></ol></div>
             
 
           </div>
