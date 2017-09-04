@@ -97,7 +97,7 @@ You need to merge them into a new binary">
 <meta property="og:description" content="题目描述
 Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.
 You need to merge them into a new binary">
-<meta property="og:updated_time" content="2017-09-01T08:20:48.000Z">
+<meta property="og:updated_time" content="2017-09-04T18:17:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「LeetCode」617 - Merge Two Binary Trees">
 <meta name="twitter:description" content="题目描述
@@ -375,7 +375,7 @@ You need to merge them into a new binary">
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  650
+                  996
                 </span>
               
 
@@ -391,7 +391,7 @@ You need to merge them into a new binary">
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -421,7 +421,7 @@ You need to merge them into a new binary">
 <a id="more"></a>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>强烈建议大家去看官方给出的说明文档和图例, 有合并的详细步骤和说明:</p>
 <p><a href="https://leetcode.com/articles/merge-two-binary-trees/" target="_blank" rel="external">https://leetcode.com/articles/merge-two-binary-trees/</a></p>
-<p>基本上说到树都会想到递归, 那么本题也不例外, 使用递归的方式合并两个树:</p>
+<h3 id="方法1-递归合并"><a href="#方法1-递归合并" class="headerlink" title="方法1: 递归合并"></a>方法1: 递归合并</h3><p>基本上说到树都会想到递归, 那么本题也不例外, 使用递归的方式合并两个树:</p>
 <ol>
 <li><p>题目中已经给出了树节点的构造函数 TreeNode, 共包含三个值: val 当前节点的值, left 左子树, right 右子树。</p>
 </li>
@@ -435,6 +435,24 @@ You need to merge them into a new binary">
 </li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * function TreeNode(val) &#123;</div><div class="line"> *     this.val = val;</div><div class="line"> *     this.left = this.right = null;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> getTreeNodeValue = <span class="function"><span class="params">node</span> =&gt;</span> (node || <span class="number">0</span>).val || <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> getChildNode = <span class="function">(<span class="params">node, type</span>) =&gt;</span> node &amp;&amp; node[type];</div><div class="line"><span class="keyword">var</span> getLeftChildNode = <span class="function">(<span class="params">node</span>) =&gt;</span> getChildNode(node, <span class="string">'left'</span>);</div><div class="line"><span class="keyword">var</span> getRightChildNode = <span class="function">(<span class="params">node</span>) =&gt;</span> getChildNode(node, <span class="string">'right'</span>);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * @param &#123;TreeNode&#125; t1</div><div class="line"> * @param &#123;TreeNode&#125; t2</div><div class="line"> * @return &#123;TreeNode&#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> mergeTrees = <span class="function"><span class="keyword">function</span>(<span class="params">t1, t2</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!t1 &amp;&amp; !t2) <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> root = <span class="keyword">new</span> TreeNode(getTreeNodeValue(t1) + getTreeNodeValue(t2));</div><div class="line">    root.left = mergeTrees(getLeftChildNode(t1), getLeftChildNode(t2));</div><div class="line">    root.right = mergeTrees(getRightChildNode(t1), getRightChildNode(t2));</div><div class="line">    <span class="keyword">return</span> root;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="方法2-栈合并"><a href="#方法2-栈合并" class="headerlink" title="方法2: 栈合并"></a>方法2: 栈合并</h3><p>假设有两棵二叉树, A 为第一棵, B 为第二棵。每次的压栈操作都将两棵树相同位置的节点合并为数组存入栈中, 例如: [A 树的节点, B 树的节点]</p>
+<ol>
+<li><p>首先将两棵树的根节点压入栈中。</p>
+</li>
+<li><p>开始循环, 每次循环都会从栈顶弹出(出栈)元素, 当栈空时停止循环。</p>
+</li>
+<li><p>将两棵树相同位置节点相加的和更新到第一棵树的对应节点。</p>
+</li>
+<li><p>若左子节点存在, 则将 A、B 两棵树对应节点的左子节点同时压入栈中。</p>
+</li>
+<li><p>若左子节点不存在, 则将 B 树对应的左子节点赋值给 A 树的对应节点。</p>
+</li>
+<li><p>对右子节点重复 4、5 步骤。</p>
+</li>
+<li><p>若当任何一步 A、B 两棵树同位置节点均为假值时, 则继续下一次出栈操作。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * function TreeNode(val) &#123;</div><div class="line"> *     this.val = val;</div><div class="line"> *     this.left = this.right = null;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * @param &#123;TreeNode&#125; t1</div><div class="line"> * @param &#123;TreeNode&#125; t2</div><div class="line"> * @return &#123;TreeNode&#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> mergeTrees = <span class="function"><span class="keyword">function</span> (<span class="params">t1, t2</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!t1) <span class="keyword">return</span> t2;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> stack = [];</div><div class="line">    stack.push([t1, t2]);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (stack.length !== <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">const</span> t = stack.pop();</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!t[<span class="number">0</span>] || !t[<span class="number">1</span>]) <span class="keyword">continue</span>;</div><div class="line"></div><div class="line">        t[<span class="number">0</span>].val += t[<span class="number">1</span>].val;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!t[<span class="number">0</span>].left) &#123;</div><div class="line">            t[<span class="number">0</span>].left = t[<span class="number">1</span>].left;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            stack.push([t[<span class="number">0</span>].left, t[<span class="number">1</span>].left]);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!t[<span class="number">0</span>].right) &#123;</div><div class="line">            t[<span class="number">0</span>].right = t[<span class="number">1</span>].right;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            stack.push([t[<span class="number">0</span>].right, t[<span class="number">1</span>].right]);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> t1;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -631,7 +649,7 @@ You need to merge them into a new binary">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.1.</span> <span class="nav-text">Example:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.1.</span> <span class="nav-text">Example:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1-递归合并"><span class="nav-number">2.1.</span> <span class="nav-text">方法1: 递归合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2-栈合并"><span class="nav-number">2.2.</span> <span class="nav-text">方法2: 栈合并</span></a></li></ol></li></ol></div>
             
 
           </div>
