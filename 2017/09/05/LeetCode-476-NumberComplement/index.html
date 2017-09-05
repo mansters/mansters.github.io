@@ -88,21 +88,24 @@
 
 
 <meta name="description" content="题目描述
-Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.
-You need to merge them into a new binary">
+Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
+
+Example 1123Input: 5Output: 2Explanation: The binary representat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「LeetCode」617 - Merge Two Binary Trees">
-<meta property="og:url" content="http://yoursite.com/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/index.html">
+<meta property="og:title" content="「LeetCode」476 - Number Complement">
+<meta property="og:url" content="http://yoursite.com/2017/09/05/LeetCode-476-NumberComplement/index.html">
 <meta property="og:site_name" content="Manny & Jossy">
 <meta property="og:description" content="题目描述
-Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.
-You need to merge them into a new binary">
-<meta property="og:updated_time" content="2017-09-04T18:17:53.000Z">
+Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
+
+Example 1123Input: 5Output: 2Explanation: The binary representat">
+<meta property="og:updated_time" content="2017-09-05T15:11:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「LeetCode」617 - Merge Two Binary Trees">
+<meta name="twitter:title" content="「LeetCode」476 - Number Complement">
 <meta name="twitter:description" content="题目描述
-Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.
-You need to merge them into a new binary">
+Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
+
+Example 1123Input: 5Output: 2Explanation: The binary representat">
 
 
 
@@ -130,13 +133,13 @@ You need to merge them into a new binary">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/05/LeetCode-476-NumberComplement/"/>
 
 
 
 
 
-  <title> 「LeetCode」617 - Merge Two Binary Trees | Manny & Jossy </title>
+  <title> 「LeetCode」476 - Number Complement | Manny & Jossy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +268,7 @@ You need to merge them into a new binary">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/05/LeetCode-476-NumberComplement/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Manny Meng">
@@ -286,7 +289,7 @@ You need to merge them into a new binary">
             
             
               
-                「LeetCode」617 - Merge Two Binary Trees
+                「LeetCode」476 - Number Complement
               
             
           </h1>
@@ -301,8 +304,8 @@ You need to merge them into a new binary">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T21:07:16+08:00">
-                2017-08-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T16:36:43+08:00">
+                2017-09-05
               </time>
             
 
@@ -342,7 +345,7 @@ You need to merge them into a new binary">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/09/05/LeetCode-476-NumberComplement/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -351,7 +354,7 @@ You need to merge them into a new binary">
 
           
           
-             <span id="/2017/08/31/LeetCode-617-MergeTwoBinaryTrees/" class="leancloud_visitors" data-flag-title="「LeetCode」617 - Merge Two Binary Trees">
+             <span id="/2017/09/05/LeetCode-476-NumberComplement/" class="leancloud_visitors" data-flag-title="「LeetCode」476 - Number Complement">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -375,7 +378,7 @@ You need to merge them into a new binary">
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  996
+                  466
                 </span>
               
 
@@ -391,7 +394,7 @@ You need to merge them into a new binary">
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  2
                 </span>
               
             </div>
@@ -411,48 +414,34 @@ You need to merge them into a new binary">
 
       
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote>
-<p>Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.</p>
-<p>You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of new tree.</p>
+<p>Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.</p>
 </blockquote>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">	Tree 1                   Tree 2</div><div class="line">          1                         2</div><div class="line">         / \                       / \</div><div class="line">        3   2                     1   3</div><div class="line">       /                           \   \</div><div class="line">      5                             4   7</div><div class="line">Output:</div><div class="line">Merged tree:</div><div class="line">	     3</div><div class="line">	    / \</div><div class="line">	   4   5</div><div class="line">	  / \   \</div><div class="line">	 5   4   7</div></pre></td></tr></table></figure>
-<p>Note: The merging process must start from the root nodes of both trees.</p>
-<p>题目大意为给定两个由数字组成的二叉树, 将他们重叠起来的时候有些节点会重合。你需要将他们合并为一个新的二叉树, 合并规则为: 若两个节点发生重合, 则将重合节点相加后的结果作为新二叉树节点的值, 若未发生重合, 则将该节点的值复制到新二叉树对应的节点。</p>
-<p>提示: 必须从两个树的根节点开始合并。</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: 5</div><div class="line">Output: 2</div><div class="line">Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.</div></pre></td></tr></table></figure>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: 1</div><div class="line">Output: 0</div><div class="line">Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.</div></pre></td></tr></table></figure>
+<h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><ol>
+<li>The given integer is guaranteed to fit within the range of a 32-bit signed integer.</li>
+<li>You could assume no leading zero bit in the integer’s binary representation.</li>
+</ol>
+<p>题目大意为给定一个正整数, 输出他的补码(补数? 此处不知道怎么翻译)。计算的方法是对每一个二进制位取反</p>
+<p>给定的数为32位带符号的整数, 可以忽略前导的0。</p>
 <a id="more"></a>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>强烈建议大家去看官方给出的说明文档和图例, 有合并的详细步骤和说明:</p>
-<p><a href="https://leetcode.com/articles/merge-two-binary-trees/" target="_blank" rel="external">https://leetcode.com/articles/merge-two-binary-trees/</a></p>
-<h3 id="方法1-递归合并"><a href="#方法1-递归合并" class="headerlink" title="方法1: 递归合并"></a>方法1: 递归合并</h3><p>基本上说到树都会想到递归, 那么本题也不例外, 使用递归的方式合并两个树:</p>
-<ol>
-<li><p>题目中已经给出了树节点的构造函数 TreeNode, 共包含三个值: val 当前节点的值, left 左子树, right 右子树。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1:"></a>方法1:</h3><ol>
+<li><p>将该数字转换为二进制</p>
 </li>
-<li><p>在合并树的方法中已经给定了两个参数: t1 和 t2, 我们先来分析一下这两个参数分别代表什么。假设 A 和 B 为两个数相对应的节点, 那么在合并的时候应为 A 的左子树 和 B 的左子树合并, 或 A 的右子树和 B 的右子树合并。所以 t1 和 t2 两个参数应同为两棵树对应节点的左子树或右子树。</p>
+<li><p>对二进制的每一位进行异或运算</p>
 </li>
-<li><p>若 t1 和 t2 都为假值(undefined 或 null 等), 则说明其父节点不拥有左子树或右子树。</p>
-</li>
-<li><p>若 t1 和 t2 有其中一个为假值, 则将值为假值的节点数值视为 0。</p>
-</li>
-<li><p>继续递归计算该节点的左子树和右子树, 直到整个树全部遍历完成。</p>
+<li><p>将异或后的结果转换为十进制</p>
 </li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * function TreeNode(val) &#123;</div><div class="line"> *     this.val = val;</div><div class="line"> *     this.left = this.right = null;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> getTreeNodeValue = <span class="function"><span class="params">node</span> =&gt;</span> (node || <span class="number">0</span>).val || <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> getChildNode = <span class="function">(<span class="params">node, type</span>) =&gt;</span> node &amp;&amp; node[type];</div><div class="line"><span class="keyword">var</span> getLeftChildNode = <span class="function">(<span class="params">node</span>) =&gt;</span> getChildNode(node, <span class="string">'left'</span>);</div><div class="line"><span class="keyword">var</span> getRightChildNode = <span class="function">(<span class="params">node</span>) =&gt;</span> getChildNode(node, <span class="string">'right'</span>);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * @param &#123;TreeNode&#125; t1</div><div class="line"> * @param &#123;TreeNode&#125; t2</div><div class="line"> * @return &#123;TreeNode&#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> mergeTrees = <span class="function"><span class="keyword">function</span>(<span class="params">t1, t2</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!t1 &amp;&amp; !t2) <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> root = <span class="keyword">new</span> TreeNode(getTreeNodeValue(t1) + getTreeNodeValue(t2));</div><div class="line">    root.left = mergeTrees(getLeftChildNode(t1), getLeftChildNode(t2));</div><div class="line">    root.right = mergeTrees(getRightChildNode(t1), getRightChildNode(t2));</div><div class="line">    <span class="keyword">return</span> root;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="方法2-栈合并"><a href="#方法2-栈合并" class="headerlink" title="方法2: 栈合并"></a>方法2: 栈合并</h3><p>假设有两棵二叉树, A 为第一棵, B 为第二棵。每次的压栈操作都将两棵树相同位置的节点合并为数组存入栈中, 例如: [A 树的节点, B 树的节点]</p>
-<ol>
-<li><p>首先将两棵树的根节点压入栈中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * @param &#123;number&#125; num</div><div class="line"> * @return &#123;number&#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> findComplement = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(num.toString(<span class="number">2</span>).split(<span class="string">''</span>).map(<span class="function"><span class="params">item</span> =&gt;</span> item ^ <span class="number">1</span>).join(<span class="string">''</span>), <span class="number">2</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2:"></a>方法2:</h3><ol>
+<li><p>求与该数字二进制表示位数相同的最大值, 例如 5 的二进制为 <code>101</code>, 由3位二进制位组成。 求由 n 位二进制数所能表示的最大整数的公式为: <code>2 ^ n - 1</code>(2 的 n 次方减1)。那么3位二进制所能表达的最大整数为7, 其二进制为 <code>111</code>。</p>
 </li>
-<li><p>开始循环, 每次循环都会从栈顶弹出(出栈)元素, 当栈空时停止循环。</p>
-</li>
-<li><p>将两棵树相同位置节点相加的和更新到第一棵树的对应节点。</p>
-</li>
-<li><p>若左子节点存在, 则将 A、B 两棵树对应节点的左子节点同时压入栈中。</p>
-</li>
-<li><p>若左子节点不存在, 则将 B 树对应的左子节点赋值给 A 树的对应节点。</p>
-</li>
-<li><p>对右子节点重复 4、5 步骤。</p>
-</li>
-<li><p>若当任何一步 A、B 两棵树同位置节点均为假值时, 则继续下一次出栈操作。</p>
+<li><p>将该数字与上一步求出的最大值进行异或运算</p>
 </li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * function TreeNode(val) &#123;</div><div class="line"> *     this.val = val;</div><div class="line"> *     this.left = this.right = null;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * @param &#123;TreeNode&#125; t1</div><div class="line"> * @param &#123;TreeNode&#125; t2</div><div class="line"> * @return &#123;TreeNode&#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> mergeTrees = <span class="function"><span class="keyword">function</span> (<span class="params">t1, t2</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!t1) <span class="keyword">return</span> t2;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> stack = [];</div><div class="line">    stack.push([t1, t2]);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (stack.length !== <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">const</span> t = stack.pop();</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!t[<span class="number">0</span>] || !t[<span class="number">1</span>]) <span class="keyword">continue</span>;</div><div class="line"></div><div class="line">        t[<span class="number">0</span>].val += t[<span class="number">1</span>].val;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!t[<span class="number">0</span>].left) &#123;</div><div class="line">            t[<span class="number">0</span>].left = t[<span class="number">1</span>].left;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            stack.push([t[<span class="number">0</span>].left, t[<span class="number">1</span>].left]);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!t[<span class="number">0</span>].right) &#123;</div><div class="line">            t[<span class="number">0</span>].right = t[<span class="number">1</span>].right;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            stack.push([t[<span class="number">0</span>].right, t[<span class="number">1</span>].right]);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> t1;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getLogarithms = <span class="function"><span class="keyword">function</span> (<span class="params">antilogarithm, base</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.log(antilogarithm) / <span class="built_in">Math</span>.log(base);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * @param &#123;number&#125; num</div><div class="line"> * @return &#123;number&#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> findComplement2 = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> num ^ (<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="built_in">parseInt</span>(getLogarithms(num, <span class="number">2</span>)) + <span class="number">1</span>) - <span class="number">1</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>其实两种解题的方法大同小异, 一个是逐位进行异或运算, 免去了求掩码的麻烦; 一个是先求出掩码, 然后对整体进行异或运算。个人更倾向于第二种, 因为其思路更加的清晰。</p>
 
       
     </div>
@@ -499,8 +488,8 @@ You need to merge them into a new binary">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/30/LeetCode-657-JudgeRouteCircle/" rel="next" title="「LeetCode」657 - Judge Route Circle">
-                <i class="fa fa-chevron-left"></i> 「LeetCode」657 - Judge Route Circle
+              <a href="/2017/09/05/LeetCode-561-ArrayPartitionI/" rel="next" title="「LeetCode」561 - Array Partition I">
+                <i class="fa fa-chevron-left"></i> 「LeetCode」561 - Array Partition I
               </a>
             
           </div>
@@ -508,10 +497,6 @@ You need to merge them into a new binary">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/05/LeetCode-561-ArrayPartitionI/" rel="prev" title="「LeetCode」561 - Array Partition I">
-                「LeetCode」561 - Array Partition I <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -653,7 +638,7 @@ You need to merge them into a new binary">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.1.</span> <span class="nav-text">Example:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1-递归合并"><span class="nav-number">2.1.</span> <span class="nav-text">方法1: 递归合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2-栈合并"><span class="nav-number">2.2.</span> <span class="nav-text">方法2: 栈合并</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-number">1.1.</span> <span class="nav-text">Example 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-2"><span class="nav-number">1.2.</span> <span class="nav-text">Example 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Note"><span class="nav-number">1.3.</span> <span class="nav-text">Note</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1"><span class="nav-number">2.1.</span> <span class="nav-text">方法1:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2"><span class="nav-number">2.2.</span> <span class="nav-text">方法2:</span></a></li></ol></li></ol></div>
             
 
           </div>
